@@ -9,6 +9,9 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 
 Route::get('/',[FrontController::class,'home'])->name('home');
 Route::get('/about',[FrontController::class,'about'])->name('about');
+Route::get('/destinations',[FrontController::class,'destinations'])->name('destinations');
+Route::get('/destination',[FrontController::class,'destination'])->name('destination');
+Route::get('/packages',[FrontController::class,'packages'])->name('packages');
 
 Route::middleware('admin')->prefix('admin')->group(function() {
     Route::get('/dashboard',[AdminDashboardController::class,'dashboard'])->name('admin_dashboard');
