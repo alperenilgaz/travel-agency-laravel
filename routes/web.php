@@ -2,11 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+Route::get('/',[FrontController::class,'home'])->name('home');
+Route::get('/about',[FrontController::class,'about'])->name('about');
 
 Route::middleware('admin')->prefix('admin')->group(function() {
     Route::get('/dashboard',[AdminDashboardController::class,'dashboard'])->name('admin_dashboard');
