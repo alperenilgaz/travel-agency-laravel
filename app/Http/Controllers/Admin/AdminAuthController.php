@@ -28,7 +28,8 @@ class AdminAuthController extends Controller
         $check = $request->all();
         $data = [
             'email' => $check['email'],
-            'password' => $check['password']
+            'password' => $check['password'],
+            'status' => 1,
         ];
     
         if(Auth::guard('admin')->attempt($data)) {

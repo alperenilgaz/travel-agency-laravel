@@ -4,8 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Admin\AdminDashboardController;
-
-
+use App\Http\Controllers\User\UserController;
 
 Route::get('/',[FrontController::class,'home'])->name('home');
 Route::get('/about',[FrontController::class,'about'])->name('about');
@@ -14,19 +13,32 @@ Route::get('/destination',[FrontController::class,'destination'])->name('destina
 Route::get('/packages',[FrontController::class,'packages'])->name('packages');
 Route::get('/team-members',[FrontController::class,'teamMembers'])->name('team-members');
 Route::get('/team-member',[FrontController::class,'teamMember'])->name('team-member');
+Route::get('/post',[FrontController::class,'post'])->name('post');
 Route::get('/faq',[FrontController::class,'faq'])->name('faq');
 Route::get('/blog',[FrontController::class,'blog'])->name('blog');
-Route::get('/post',[FrontController::class,'post'])->name('post');
 Route::get('/category',[FrontController::class,'category'])->name('category');
 Route::get('/contact',[FrontController::class,'contact'])->name('contact');
 Route::get('/terms',[FrontController::class,'terms'])->name('terms');
 Route::get('/privacy',[FrontController::class,'privacy'])->name('privacy');
 Route::get('/login',[FrontController::class,'login'])->name('login');
-Route::get('/forget-password',[FrontController::class,'forgetpassword'])->name('forget-password-user');
+Route::post('/login-submit',[FrontController::class,'login_submit'])->name('login_submit');
+Route::get('/logout',[FrontController::class,'logout'])->name('logout');
 Route::get('/register',[FrontController::class,'register'])->name('register');
 Route::post('/register',[FrontController::class,'register_submit'])->name('register_submit');
-Route::get('/register-verify-email/{email}/{token}',[FrontController::class,'register_verify_email'])->name('register_email_verify');
+Route::get('/register-verify-email/{email}/{token}',[FrontController::class,'register_verify'])->name('register_email');
+Route::get('/forget-password',[FrontController::class,'forgetpassword'])->name('forget-password-user');
+Route::post('/forget-password',[FrontController::class,'forget_password_submit'])->name('forget-password-submit');
+Route::get('/reset-password/{token}/{email}',[FrontController::class,'reset_password'])->name('_reset_password');
+Route::post('/reset-password/{token}/{email}',[FrontController::class,'reset_password_submit'])->name('reset_password_submit');
 
+
+
+
+
+Route::middleware('auth')->prefix('/')->group(function(){
+Route::get('/user-dashboard',[UserController::class,'user_dashboard'])->name('user_dashboard');
+
+});
 
 
 
